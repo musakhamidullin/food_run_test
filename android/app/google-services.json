@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "481230945678",
+    "project_id": "food-run-prod",
+    "storage_bucket": "food-run-prod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481230945678:android:a7e3f2b8c1d9e4f5a6b7",
+        "android_client_info": {
+          "package_name": "ru.foodrun.client"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXkQ3mP9d7rLwK2eU5vTnC8oYjMpA1fGh"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
