@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' hide Category;
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,7 +8,6 @@ import 'package:food_run/controllers/shared_prefs_controller.dart';
 import 'package:food_run/models/category.dart';
 import 'package:food_run/models/order.dart';
 import 'package:food_run/models/product.dart';
-import 'package:food_run/network/api_exception.dart';
 import 'package:food_run/network/http_client.dart';
 import 'package:food_run/controllers/order_controller.dart'
     show Discount, DiscountType, ConfirmOrderResponse, ClosedRestaurantResponse;
@@ -24,8 +23,7 @@ class Api {
 
   static const baseUrl = 'https://api.foodrun.ru/api/projects/main';
 
-  String get _token =>
-      Get.find<SharedPrefsController>().getToken() ?? '';
+  String get _token => Get.find<SharedPrefsController>().getToken() ?? '';
 
   Map<String, String> get _authHeaders => {
         'Authorization': 'Token $_token',
@@ -57,8 +55,7 @@ class Api {
   }
 
   Future<Map<String, dynamic>> getProfile() async {
-    final response =
-        await _httpClient.getRequest(url: '$baseUrl/profile/');
+    final response = await _httpClient.getRequest(url: '$baseUrl/profile/');
     return response as Map<String, dynamic>;
   }
 
@@ -108,7 +105,8 @@ class Api {
       String shopCode, int productId, String deliveryType) async {
     try {
       final response = await _httpClient.getRequest(
-        url: '$baseUrl/shops/$shopCode/products/$productId/?available=$deliveryType',
+        url:
+            '$baseUrl/shops/$shopCode/products/$productId/?available=$deliveryType',
       );
       return Product.fromJson(response as Map<String, dynamic>);
     } on Exception catch (_) {
@@ -119,8 +117,8 @@ class Api {
   // ── Stop-list / leftovers ─────────────────────────────────────────────────
 
   Future<List<int>> fetchStopList(String shopCode) async {
-    final response =
-        await _httpClient.getRequest(url: '$baseUrl/shops/$shopCode/stop-list/');
+    final response = await _httpClient.getRequest(
+        url: '$baseUrl/shops/$shopCode/stop-list/');
     return List<int>.from(response as List);
   }
 

@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide MenuController;
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -469,8 +469,8 @@ class OrderController extends GetxController {
 
       if (result.closed != null) {
         _setLoader(false, context);
-        await _showAlert(
-            context, title: 'Внимание', body: result.closed!.message);
+        await _showAlert(context,
+            title: 'Внимание', body: result.closed!.message);
         return;
       }
 
@@ -599,7 +599,8 @@ class OrderController extends GetxController {
     await _showAlert(
       context,
       title: 'Внимание',
-      body: 'Некоторых товаров нет в наличии или не хватает нужного количества. '
+      body:
+          'Некоторых товаров нет в наличии или не хватает нужного количества. '
           'Проверьте корзину.',
     );
 
@@ -733,8 +734,7 @@ class OrderController extends GetxController {
     try {
       final menuCtrl = Get.find<MenuController>();
       final sauceCategoryId = menuCtrl.categoriesList
-          .firstWhereOrNull(
-              (cat) => cat.name.toLowerCase().startsWith('соус'))
+          .firstWhereOrNull((cat) => cat.name.toLowerCase().startsWith('соус'))
           ?.id;
 
       // TODO: добавить RecommendedSectionController

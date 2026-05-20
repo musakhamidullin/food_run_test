@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide MenuController;
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
@@ -154,14 +154,14 @@ class _FoodRunAppState extends State<FoodRunApp> {
 
   Future<void> _registerDependencies() async {
     await Get.putAsync<SharedPrefsController>(
-      () async =>
-          SharedPrefsController(await SharedPreferences.getInstance()),
+      () async => SharedPrefsController(await SharedPreferences.getInstance()),
       permanent: true,
     );
 
     Get.put(SettingsController(), permanent: true);
 
-    Get.lazyPut<OrderStatusMapper>(() => const OrderStatusMapper(), fenix: true);
+    Get.lazyPut<OrderStatusMapper>(() => const OrderStatusMapper(),
+        fenix: true);
     Get.lazyPut<OrderService>(() => OrderService(), fenix: true);
 
     Get.put(OrderController(Get.find<OrderService>()), permanent: true);
